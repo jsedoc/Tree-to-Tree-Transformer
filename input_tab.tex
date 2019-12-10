@@ -1,0 +1,45 @@
+
+\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+\begin{figure}[H]
+\begin{floatrow}
+\ffigbox{
+\begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 3cm/#1,  level distance = 1.2cm}] 
+% \node [arn_x] {\ \ (a + b) $*$ c \ \ }
+     \node [arn_x] {1}
+        child{ node [arn_x] {2}
+            child{ node [arn_x] {4}}
+            child{ node [arn_x] {5}}
+        }
+        child{ node [arn_x] {3}
+            child{ node [arn_x] {6}}
+            child{ node [arn_x] {7}}
+        }
+    ;
+\end{tikzpicture}
+}{%
+  \caption{Example binary tree -  4 2 5 1 6 3 7}%
+  \label{fig: example-binary-tree}
+}
+
+
+\capbtabbox{%
+    \def\arraystretch{1.15}
+   \begin{tabular}{|c|c|c|}
+\hline
+\textbf{Task} & \textbf{Model} & \textbf{Input Representation} \\ \hline
+\multirow{3}{*}{SEQ} & Seq2Seq & 4 2 5 1 6 3 7 \\ \cline{2-3} 
+ & Transformer & \begin{tabular}[c]{@{}c@{}}4 2 5 1 6 3 7\\ 1 2 3 4 5 6 7\end{tabular} \\ \cline{2-3} 
+ & Trans+Gorn & \begin{tabular}[c]{@{}c@{}}4 2 5 1 6 3 7\\ 1 2 3 4 5 67\\ 4 2 5 1 6 3 7\end{tabular} \\ \hline
+\multirow{3}{*}{TREE} & Seq2Seq & ( 1 ( 2 4 5 ) ( 3 6 7 ) ) \\ \cline{2-3} 
+ & Transformer & \begin{tabular}[c]{@{}c@{}}(  1 ( 2 4 5  ) (  3  6   7   )   )\\ 1 2 3 4 5 6 7 8 9 10 11 12 13\end{tabular} \\ \cline{2-3} 
+ & Trans+Gorn & \begin{tabular}[c]{@{}c@{}}1 2 4 5 3 6 7\\ 4 2 1 3 6 5 7\\ 1 2 3 4 5 6 7\end{tabular} \\ \hline
+\end{tabular}
+}{%
+%   \caption{A table}%
+  \caption{Sample Input representation}%
+  \label{tab: input-representation}
+}
+\end{floatrow}
+\end{figure}
+
+
